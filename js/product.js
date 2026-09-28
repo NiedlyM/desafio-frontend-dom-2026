@@ -36,3 +36,18 @@ if (!livroSelecionado) {
  `
 };
   
+
+const botaoAdicionar = document.querySelector(".book-detail__add");
+botaoAdicionar.addEventListener("click", () => {
+  const itemexistente = carrinho.find((item) => item.id === livroSelecionado.id);
+  if (itemexistente) {
+    itemexistente.quantidade++;
+  } else {
+    carrinho.push({id: livroSelecionado.id, quantidade: 1 });
+  }
+ 
+ salvarCarrinho();
+ renderizarCarrinho();
+ abrirCarrinho();
+ console.log("Carrinho:", carrinho);
+})

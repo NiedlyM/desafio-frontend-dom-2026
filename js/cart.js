@@ -1,7 +1,7 @@
 // Sprint 2 — Pessoa 2: renderize, abra e feche o carrinho.
 // Sprint 3 — Pessoa 1: conecte a remoção de cada item.
 
-function renderizarCarrinho() {
+ function renderizarCarrinho() {
   const carrinhoContainer = document.querySelector(".cart__products");
   const totalContainer = document.querySelector(".total");
 
@@ -21,25 +21,36 @@ function renderizarCarrinho() {
     const livro = dados.livros.find(l => l.id === item.id);
     if (!livro) return;
 
-    total += livro.preco * item.quantidade;
+    const subtotal = livro.preco * item.quantidade;
+    total += subtotal;
     
     const div = document.createElement("div");
     div.className = "cart__product";
+    
+    // Renderiza subtotal correto do produto em vez de 'total'
     div.innerHTML = `
       <div class="cart-mini-cover book-cover--coral"><b>p.42</b></div>
       <div class="cart__product-info">
         <h3>${livro.titulo}</h3>
         <p>Quantidade: ${item.quantidade}</p>
-        <strong>${formatarPreco(total)}</strong>
+        <strong>${formatarPreco(subtotal)}</strong>
       </div>
+      <button class="cart__remove" type="button">Remover</button>
     `;
+
+    // Evento atrelado diretamente ao botão do item atual antes de inserir no DOM
+    const botaoRemover = div.querySelector(".cart__remove");
+    botaoRemover.addEventListener("click", () => {
+      carrinho = carrinho.filter(itemCarrinho => itemCarrinho.id !== item.id);
+      salvarCarrinho();
+      renderizarCarrinho();
+    });
 
     carrinhoContainer.appendChild(div);
   });
 
   totalContainer.textContent = formatarPreco(total);
 }
-
 
 function abrirCarrinho() {
   const painel = document.querySelector(".cart");
@@ -68,3 +79,5 @@ function fecharCarrinho() {
 document.querySelector(".cart-trigger").addEventListener("click", abrirCarrinho);
 document.querySelector(".cart__close").addEventListener("click", fecharCarrinho);
 document.querySelector(".cart-backdrop").addEventListener("click", fecharCarrinho);
+
+
