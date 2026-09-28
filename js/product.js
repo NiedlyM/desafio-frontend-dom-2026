@@ -37,33 +37,15 @@ if (!livroSelecionado) {
 };
   
 
-
-        
-        const botaoAdicionar = document.querySelector('.product__button'); // Ajuste a classe conforme seu HTML
-
-        
-        if (botaoAdicionar) {
-            
-            botaoAdicionar.addEventListener('click', (event) => {
-                event.preventDefault();
-
-                 
-            
-                const itemExistente = carrinho.find(item => item.id === livro.id);
-
-                
-                if (itemExistente) {
-                    itemExistente.quantidade += 1;
-                } else {
-                    carrinho.push({ id: livro.id, quantidade: 1 });
-                }
-
-                
-                salvarCarrinho();
-                
-                console.log('Carrinho atualizado:', carrinho);
-            });
-        }
-
-  
-        container.appendChild(card);
+const botaoAdicionar = document.querySelector(".book-detail__add");
+botaoAdicionar.addEventListener("click", () => {
+  const itemexistente = carrinho.find((item) => item.id === livroSelecionado.id);
+  if (itemexistente) {
+    itemexistente.quantidade++;
+  } else {
+    carrinho.push({id: livroSelecionado.id, quantidade: 1 });
+  }
+ 
+ salvarCarrinho();
+ console.log("Carrinho:", carrinho);
+})
