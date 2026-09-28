@@ -47,5 +47,7 @@ botaoAdicionar.addEventListener("click", () => {
   }
  
  salvarCarrinho();
+ renderizarCarrinho();
+ abrirCarrinho();
  console.log("Carrinho:", carrinho);
 })
