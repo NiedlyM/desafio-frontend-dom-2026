@@ -1,15 +1,15 @@
 // Sprint 1 — Pessoa 1: implemente renderizarCatalogo().
 function renderizarCatalogo() {
-    // 1. Seleciona o container e limpa seu conteúdo
+    
     const container = document.querySelector('.products__list');
     if (!container) return;
     container.innerHTML = '';
 
-    // 2. Percorre a lista de livros (dados.livros)
+    
     dados.livros.forEach(livro => {
-        // Cria o elemento do card
+        
         const card = document.createElement('div');
-        card.classList.add('product__card'); // Ajuste a classe conforme seu CSS/modelo
+        card.classList.add('product__card'); 
 
         
         card.innerHTML = `
